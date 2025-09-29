@@ -5,22 +5,17 @@ async function searchRecipes() {
         return;
     }
 
-    // Show loading state
     const recipesContainer = document.getElementById("recipes");
     recipesContainer.innerHTML = '<div class="loading">Searching for delicious recipes...</div>';
 
-    // Try multiple approaches to handle potential CORS and API issues
     try {
-        // Method 1: Try direct API call first
         await trySpoonacularAPI(ingredientInput);
     } catch (error) {
         console.log("Direct API failed, trying alternative approach:", error);
         try {
-            // Method 2: Try with CORS proxy
             await tryWithCorsProxy(ingredientInput);
         } catch (proxyError) {
             console.log("CORS proxy failed, showing demo data:", proxyError);
-            // Method 3: Show demo data with helpful error message
             showDemoRecipes(ingredientInput);
         }
     }
@@ -59,7 +54,6 @@ async function tryWithCorsProxy(ingredients) {
 function showDemoRecipes(ingredients) {
     const recipesContainer = document.getElementById("recipes");
     
-    // Create demo recipes based on common ingredients
     const demoRecipes = [
         {
             id: 1,
@@ -81,7 +75,6 @@ function showDemoRecipes(ingredients) {
         }
     ];
 
-    // Show error message with demo recipes
     recipesContainer.innerHTML = `
         <div style="background: linear-gradient(135deg, #fff3cd, #ffeaa7); border: 2px solid #ffc107; border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center;">
             <h3 style="color: #856404; margin-bottom: 10px;">⚠️ API Connection Issue</h3>
@@ -102,7 +95,6 @@ function showDemoRecipes(ingredients) {
         </div>
     `;
 
-    // Add demo recipes
     demoRecipes.forEach((recipe, index) => {
         const recipeDiv = document.createElement("div");
         recipeDiv.classList.add("recipe");
@@ -142,11 +134,11 @@ function displayRecipes(recipes) {
     });
 }
 
-// Add enter key functionality
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ingredientInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             searchRecipes();
         }
     });
+
 });
