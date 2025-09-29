@@ -271,7 +271,6 @@ button:active {
     margin-bottom: 20px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         margin: 10px;
@@ -302,7 +301,6 @@ button:active {
     }
 }
 
-/* Loading Animation */
 .loading {
     text-align: center;
     padding: 40px;
@@ -325,4 +323,5 @@ button:active {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+
 }
